@@ -1,10 +1,14 @@
 import { combineReducers } from "redux";
 
 
-const videos = (state = [], action) => {
+const videos = (state = {videos:[], selectedVideo: null}, action) => {
     switch (action.type) {
         case "VIDEOS_LOADED":
-            return  action.payload;
+            return  {
+                ...state,
+                videos: [...state.videos, action.payload],
+                selectedVideo: action.payload[0]
+            }
         default:
             return state;
     }

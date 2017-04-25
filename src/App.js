@@ -3,46 +3,32 @@ import './App.css';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { searchVideo, videosLoaded, addVideos } from "./actions";
+import VideoDetail from './VideoDetail';
+import VideoList from './VideoList';
+
 
 class App extends Component {
-    // constructor(props) {
-    //     super(props);
-    //
-    //     this.state = {
-    //         term: ''
-    //     }
-    // }
-    // componentDidMount(){
-    //     console.log('componentDidNomut', this.props.value)
-    //     this.props.searchVideo(this.props.value);
-    // }
 
     onFormSubmit = (e) => {
         e.preventDefault()
-
         this.props.searchVideo(this.props.value)
-        //this.setState({term: ''})
     }
 
-    // onInputChange = (e) => {
-    //     this.setState({
-    //         term: e.target.value
-    //     })
-    // }
 
     render() {
-      console.log('rendertuuu', this.props.value)
-
       return (
       <div className="App">
           <h1>Hello youtube</h1>
           <form onSubmit={this.onFormSubmit}>
             <input type="text" value={this.props.value} onChange={(e) => this.props.addVideos(e.target.value)}/>
               <button type="submit">Search!</button>
+              <VideoDetail video={this.props.selectedVideo} />
+              <VideoList
+                  onVideoSelect={this.props.selectedVideo}
+                  videos={this.props.videos} />
+
           </form>
-          {
-              this.props.videos.map(a => <h2>{a.etag}</h2>)
-          }
+
       </div>
 );
   }
@@ -51,7 +37,8 @@ class App extends Component {
 const mapStateToProps = (state) => {
     console.log('state app.js', state)
     return {
-        videos: state.videos,
+        videos: state.videos.videos,
+        selectedVideo: state.videos.selectedVideo,
         value: state.value.value
     }
 }
