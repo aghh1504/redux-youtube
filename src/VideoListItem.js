@@ -2,6 +2,7 @@ import React from 'react';
 
 const VideoListItem = ({video, onVideoSelect}) => {
     const imageUrl = video.snippet.thumbnails.default.url;
+    console.log('VideoListItem!!!!', video, onVideoSelect)
 
     return (
         <li onClick={() => onVideoSelect(video)} className="list-group-item">

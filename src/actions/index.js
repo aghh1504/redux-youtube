@@ -18,6 +18,13 @@ export const addVideos =(text) => {
     }
 }
 
+export const selectVideo = (video) => {
+    return {
+        type: 'SELECT_VIDEO',
+        payload: video
+    }
+}
+
 //Async action
 export const searchVideo = (text) => {
     return (dispatch) => {

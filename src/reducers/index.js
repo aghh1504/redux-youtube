@@ -6,8 +6,13 @@ const videos = (state = {videos:[], selectedVideo: null}, action) => {
         case "VIDEOS_LOADED":
             return  {
                 ...state,
-                videos: [...state.videos, action.payload],
+                videos: [ ...action.payload],
                 selectedVideo: action.payload[0]
+            }
+        case 'SELECT_VIDEO':
+            return {
+                ...state,
+                selectedVideo: action.payload
             }
         default:
             return state;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { searchVideo, videosLoaded, addVideos } from "./actions";
+import { searchVideo, videosLoaded, addVideos, selectVideo } from "./actions";
 import VideoDetail from './VideoDetail';
 import VideoList from './VideoList';
 
@@ -15,22 +15,21 @@ class App extends Component {
     }
 
 
+
     render() {
       return (
       <div className="App">
           <h1>Hello youtube</h1>
           <form onSubmit={this.onFormSubmit}>
             <input type="text" value={this.props.value} onChange={(e) => this.props.addVideos(e.target.value)}/>
-              <button type="submit">Search!</button>
+              <button type="submit" className="btn btn-primary">Search!</button>
               <VideoDetail video={this.props.selectedVideo} />
               <VideoList
-                  onVideoSelect={this.props.selectedVideo}
+                  onVideoSelect={selectedVideo => this.props.selectVideo(selectedVideo)}
                   videos={this.props.videos} />
-
           </form>
-
       </div>
-);
+      );
   }
 }
 
@@ -43,7 +42,7 @@ const mapStateToProps = (state) => {
     }
 }
 const mapDispatchToProps = dispatch => {
-    return bindActionCreators({searchVideo, videosLoaded, addVideos}, dispatch);
+    return bindActionCreators({searchVideo, videosLoaded, addVideos, selectVideo}, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
