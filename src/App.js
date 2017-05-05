@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import { searchVideo, videosLoaded, addVideos, selectVideo } from "./actions";
 import VideoDetail from './VideoDetail';
 import VideoList from './VideoList';
+import SignUp from './SignUp';
 
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
       return (
       <div className="App">
           <h1>Hello youtube</h1>
+          <SignUp />
           <form onSubmit={this.onFormSubmit}>
             <input type="text" value={this.props.value} onChange={(e) => this.props.addVideos(e.target.value)}/>
               <button type="submit" className="btn btn-primary">Search!</button>
@@ -46,4 +48,3 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-
