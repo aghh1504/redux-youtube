@@ -6,13 +6,15 @@ import {
 
 import App from './App';
 import UserAccount from './UserAccount';
+import RegisterForm from './RegisterForm';
 
 
 const Routes = (props) => (
-  <Router  >
+  <Router {...props}>
     <div>
-      <Route path="/" component={App} />
+      <Route exact path="/" component={App} />
       <Route path="/userAccount" component={UserAccount} />
+      <Route path="/register" component={RegisterForm} />
     </div>
   </Router>
 );
